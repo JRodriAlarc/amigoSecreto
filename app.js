@@ -12,9 +12,15 @@ function agregarAmigo() {
     if (nombreAmigo !== '') {
         //Verificar que el nombre no  inicie con número
         //Verificar que no se repita en la lista de amigos
-        console.log("addNew Amigo");
-        listaAmigosSecretos.push(nombreAmigo)
+        listaAmigosSecretos.push(nombreAmigo);
         limpiarcampo();
+
+        let itemNombreAmigo = document.createElement("li");
+        itemNombreAmigo.classList.add('name-list-item');
+        itemNombreAmigo.id = `item-${nombreAmigo}`;
+        itemNombreAmigo.innerText = nombreAmigo;
+        listaAmigos.appendChild(itemNombreAmigo);
+
     } else {
         alert ("Por favor, inserte un nombre")
     }
@@ -22,17 +28,19 @@ function agregarAmigo() {
 }
 
 function sortearAmigo() {
-    console.log("sortear Amigo");
-    
+    limpiarcampo();
+
     cantidadAmigos = listaAmigosSecretos.length;
 
     if (cantidadAmigos >= 2) {
         let amigoAleatorio = Math.floor(Math.random()*cantidadAmigos);
-        
-        console.log(`Amigo Aleatorio: ${listaAmigosSecretos[amigoAleatorio]}`);
+
+        resultado.innerHTML = `<li id="nombre-amigo-secreto">${listaAmigosSecretos[amigoAleatorio]}</li>`;
+
+        let item = document.getElementById(`item-${listaAmigosSecretos[amigoAleatorio]}`);
+        listaAmigos.removeChild(item);
 
         listaAmigosSecretos.splice(amigoAleatorio, 1);
-        mostarListaAmigos();
     } 
     
     if (cantidadAmigos < 2) {
@@ -41,16 +49,15 @@ function sortearAmigo() {
 }
 
 function reiniciarJuego() {
-    console.log("reiniciar Juego");
+    listaAmigosSecretos = [];
+    cantidadAmigos = 0;
+    listaAmigos.innerHTML = "";
+    limpiarcampo();
+    
 }
 
 
 function limpiarcampo() {
     document.getElementById('amigo').value = '';
-}
-
-function mostarListaAmigos () {
-    for (let i = 0; i < listaAmigosSecretos.length; i++) {
-        console.log(listaAmigosSecretos[i]);
-    }
+    resultado.innerHTML = "";
 }
