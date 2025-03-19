@@ -35,7 +35,7 @@ function sortearAmigo() {
     if (cantidadAmigos >= 2) {
         let amigoAleatorio = Math.floor(Math.random()*cantidadAmigos);
 
-        resultado.innerHTML = `<li id="nombre-amigo-secreto">${listaAmigosSecretos[amigoAleatorio]}</li>`;
+        resultado.innerHTML = `<li id="nombre-amigo-secreto">El Amigo Secreto Es: <span>${listaAmigosSecretos[amigoAleatorio]}</span></li>`;
 
         let item = document.getElementById(`item-${listaAmigosSecretos[amigoAleatorio]}`);
         listaAmigos.removeChild(item);
@@ -60,4 +60,10 @@ function reiniciarJuego() {
 function limpiarcampo() {
     document.getElementById('amigo').value = '';
     resultado.innerHTML = "";
+}
+
+function mostarListaAmigos () {
+    for (let i = 0; i < listaAmigosSecretos.length; i++) {
+        console.log(listaAmigosSecretos[i]);
+    }
 }

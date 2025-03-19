@@ -148,6 +148,11 @@ ul {
     text-align: center;
 }
 
+#nombre-amigo-secreto span{
+    color: #26b413;
+    font-weight: bolder;
+}
+
 /* Botón de sortear título */
 .button-draw {
     display: flex;
